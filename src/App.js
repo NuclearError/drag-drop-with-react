@@ -1,24 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Hitbox from 'Hitbox';
+import Item from 'Item';
+
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
+
+const appStyle = css`
+  margin: 0 auto;
+  border: 2px solid black;
+  width: 800px;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" css={appStyle}>
+      <Item posX={100} posY={150} />
+      <Hitbox />
     </div>
   );
 }
