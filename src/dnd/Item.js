@@ -39,12 +39,11 @@ const itemSource = {
 /**
  * Specifies which props to inject into your component.
  */
-function collect(connect) {
+function collect(connect, monitor) {
     return {
-      // Call this function inside render()
-      // to let React DnD handle the drag events:
       connectDragSource: connect.dragSource(),
       connectDragPreview: connect.dragPreview(),
+      isDragging: monitor.isDragging(),
     }
   }
 
@@ -54,21 +53,25 @@ class Item extends Component {
         this.itemRef = React.createRef();
     }
     render() {
-        const { connectDragSource, connectDragPreview, id, posX, posY } = this.props;
+        const { connectDragSource, connectDragPreview, id, isDragging, posX, posY } = this.props;
         return (
             <>
-            <DragPreviewImage connect={connectDragPreview} src='img/img_75x75.jpg' />
-            <div
-                css={[
-                    itemStyling,
-                    posX && css`left: ${posX}px;`,
-                    posY && css`top: ${posY}px;`,
-                ]}
-                id={id}
-                ref={itemRef => connectDragSource(itemRef)}
-            >
-                <p>Item</p>
-            </div>
+                <DragPreviewImage 
+                    connect={connectDragPreview} 
+                    src='img/img_75x75.jpg' 
+                />
+                <div
+                    css={[
+                        itemStyling,
+                        posX && css`left: ${posX}px;`,
+                        posY && css`top: ${posY}px;`,
+                        isDragging && css`display: none;`, /* hideSourceOnDrag hack */
+                    ]}
+                    id={id}
+                    ref={itemRef => connectDragSource(itemRef)}
+                >
+                    <p>Item</p>
+                </div>
             </>
         );
     }
