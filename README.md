@@ -3,6 +3,10 @@
 
 This was built following [the steps described here](https://www.freecodecamp.org/news/reactjs-implement-drag-and-drop-feature-without-using-external-libraries-ad8994429f1a/).
 
+### React-dnd Implementation
+
+http://react-dnd.github.io/react-dnd/about
+
 
 
 
