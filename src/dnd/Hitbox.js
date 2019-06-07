@@ -18,7 +18,7 @@ const hitboxStyling = css`
         font-size: 0.75rem;
         color: black;
         top: 45%;
-        left: 2px;
+        left: 15px;
         pointer-events: none;
         z-index: 1;
     }

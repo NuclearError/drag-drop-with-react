@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { DragSource } from 'react-dnd';
+import { DragSource, DragPreviewImage } from 'react-dnd';
 
 import ItemTypes from './ItemTypes';
 
@@ -44,6 +44,7 @@ function collect(connect) {
       // Call this function inside render()
       // to let React DnD handle the drag events:
       connectDragSource: connect.dragSource(),
+      connectDragPreview: connect.dragPreview(),
     }
   }
 
@@ -53,9 +54,10 @@ class Item extends Component {
         this.itemRef = React.createRef();
     }
     render() {
-        const { connectDragSource, id, posX, posY } = this.props;
-        console.log('this.props = ', this.props);
+        const { connectDragSource, connectDragPreview, id, posX, posY } = this.props;
         return (
+            <>
+            <DragPreviewImage connect={connectDragPreview} src='img/img_75x75.jpg' />
             <div
                 css={[
                     itemStyling,
@@ -67,6 +69,7 @@ class Item extends Component {
             >
                 <p>Item</p>
             </div>
+            </>
         );
     }
 }
