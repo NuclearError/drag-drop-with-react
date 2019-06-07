@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { DragSource } from 'react-dnd';
+
+import ItemTypes from './ItemTypes';
+
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 
@@ -9,7 +13,7 @@ const itemStyling = css`
     height: 75px;
     border-radius: 50%;
     background-color: deeppink;
-    background-image: url("img/img_75x75.jpg");
+    /* background-image: url("img/img_75x75.jpg"); */
     cursor: pointer;
     z-index: 1;
 
@@ -24,24 +28,48 @@ const itemStyling = css`
     }
 `;
 
-const onDragStart = (event, taskName) => {
-    console.log("onDragStart called: taskName = ", taskName);
-    event.dataTransfer.setData("taskName", taskName);
-}
+const itemSource = {
+    beginDrag(props) {
+        // Return the data describing the dragged item
+        const draggedItem = { id: props.id };
+        return draggedItem;
+      },
+};
 
-const Item = ({ posX, posY }) => (
-    <div 
-        css={[
-            itemStyling,
-            posX && css`left: ${posX}px;`,
-            posY && css`top: ${posY}px;`,
-        ]}
-        draggable="true"
-        onDragStart = {event => onDragStart(event, 'boop')}
-    >
-        <p>Item</p>
-    </div>
-);
+/**
+ * Specifies which props to inject into your component.
+ */
+function collect(connect) {
+    return {
+      // Call this function inside render()
+      // to let React DnD handle the drag events:
+      connectDragSource: connect.dragSource(),
+    }
+  }
+
+class Item extends Component {
+    constructor(props) {
+        super(props);
+        this.itemRef = React.createRef();
+    }
+    render() {
+        const { connectDragSource, id, posX, posY } = this.props;
+        console.log('this.props = ', this.props);
+        return (
+            <div
+                css={[
+                    itemStyling,
+                    posX && css`left: ${posX}px;`,
+                    posY && css`top: ${posY}px;`,
+                ]}
+                id={id}
+                ref={itemRef => connectDragSource(itemRef)}
+            >
+                <p>Item</p>
+            </div>
+        );
+    }
+}
 
 Item.defaultProps = {
     posX: 0,
@@ -49,8 +77,10 @@ Item.defaultProps = {
   };
   
   Item.propTypes = {
+    id: PropTypes.number.isRequired,
     posX: PropTypes.number,
     posY: PropTypes.number,
   };
 
-export default Item;
+// export default Item;
+export default DragSource(ItemTypes.ITEM, itemSource, collect)(Item);

@@ -30,9 +30,10 @@ function App() {
         <h1 css={headingStyle}>React-Dnd Implementation</h1>
         <Hitbox />
         <Item 
+          id={9001}
           posX={200} 
           posY={50} 
-        />
+        />   
       </section>
     </div>
   );
