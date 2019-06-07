@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import VanillaApp from './vanilla/App';
+import DndApp from './dnd/App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<VanillaApp />, document.querySelector('.vanilla-app'));
+ReactDOM.render(<DndApp />, document.querySelector('.dnd-app'));
