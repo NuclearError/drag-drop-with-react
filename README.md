@@ -1,13 +1,35 @@
  
+## Exploring different implementations of drag-drop behaviour in React
+
+The purpose of this repo is to compare different drag-drop implementations, with working examples.
+
 ### Vanilla React Implementation
 
 This was built following [the steps described here](https://www.freecodecamp.org/news/reactjs-implement-drag-and-drop-feature-without-using-external-libraries-ad8994429f1a/).
 
+Packages used: none
+
 ### React-dnd Implementation
 
-http://react-dnd.github.io/react-dnd/about
+Judging from the number of open issues and open PRs, it doesn't look like this package receives 
+a lot of maintenance or updates. [The docs are outdated and inconsistent.](http://react-dnd.github.io/react-dnd/about)
 
+Here were some bugs that I encountered ...
 
+* Can't change opacity of items on drag - online examples don't work
+* hideSourceOnDrag doesn't seem to work
+* the "preview image" on a dragged item only loads the first time you drag it
+
+Packages used: 
+
+```
+"react-dnd": "^7.5.0",
+"react-dnd-html5-backend": "^7.5.0",
+```
+
+### React-beautiful-dnd Implementation
+
+[Here is a free tutorial on how to use this package](https://egghead.io/courses/beautiful-and-accessible-drag-and-drop-with-react-beautiful-dnd).
 
 
 
