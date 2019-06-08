@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import VanillaApp from './vanilla/App';
-import DndApp from './dnd/App';
+import BeautifulDndApp from './beautiful-dnd/App';
 
 // ReactDOM.render(<VanillaApp />, document.querySelector('.vanilla-app'));
-ReactDOM.render(<DndApp />, document.querySelector('.dnd-app'));
+ReactDOM.render(<BeautifulDndApp />, document.querySelector('.beautiful-dnd-app'));
