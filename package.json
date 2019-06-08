@@ -6,6 +6,7 @@
     "@emotion/core": "^10.0.10",
     "babel-plugin-emotion": "^10.0.9",
     "react": "^16.8.6",
+    "react-beautiful-dnd": "^11.0.3",
     "react-dnd": "^7.5.0",
     "react-dnd-html5-backend": "^7.5.0",
     "react-dom": "^16.8.6",
