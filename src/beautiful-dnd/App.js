@@ -1,4 +1,4 @@
-
+import { DragDropContext } from 'react-beautiful-dnd';
 import Hitbox from './Hitbox';
 import Item from './Item';
 
@@ -21,19 +21,31 @@ const headingStyle = css`
   font-weight: 500;
 `;
 
+const onDragEnd = result => {
+  // do stuff here (this function is required)
+}
+
 function App() {
   return (
-    <div className="App" css={appStyle}>
-      <section css={sectionStyle}>
-        <h1 css={headingStyle}>React-Beautiful-Dnd Implementation</h1>
-        <Hitbox />
-        <Item 
-          id={9001}
-          posX={200} 
-          posY={50} 
-        />   
-      </section>
-    </div>
+    <DragDropContext
+      // onDragStart
+      // onDragUpdate
+      onDragEnd={onDragEnd}
+    >
+      <div className="App" css={appStyle}>
+        <section css={sectionStyle}>
+          <h1 css={headingStyle}>React-Beautiful-Dnd Implementation</h1>
+          <Hitbox>
+            <Item 
+              id={9001}
+              posX={25} 
+              posY={25} 
+            /> 
+          </Hitbox>  
+          <Hitbox bgColor="skyblue" />
+        </section>
+      </div>
+    </DragDropContext>
   );
 }
 

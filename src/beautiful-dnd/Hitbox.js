@@ -1,40 +1,59 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Droppable } from 'react-beautiful-dnd';
 
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 
 const hitboxStyling = css`
+    margin-right: 20px;
     width: 150px;
     height: 150px;
-    background-color: BlueViolet;
     position: relative;
+    display: inline-block;
 
-    > p {
-        margin: 0 0 5px;
-        position: absolute;
-        font-size: 0.75rem;
-        color: white;
-        top: 45%;
-        left: 15px;
-        pointer-events: none;
-        z-index: 1;
+    &:last-child {
+      margin-right: 0;
     }
 `;
 
 class Hitbox extends Component {
   constructor(props) {
     super(props);
+    this.boxRef = React.createRef();
   }
 
+  // provided.droppableProps (see docs for provided properties)
+  // provided.placeholder is used to expand the space when dragging n dropping
+
   render() {
+    const { children, bgColor } = this.props;
     return (
-      <div 
-        css={hitboxStyling} 
-      >
-        <p>Hitbox</p>
-      </div>
+      /* Note that the droppableId needs to be unique */
+      <Droppable droppableId={1}>
+        {(provided) => (
+          <div
+            css={[hitboxStyling, css`background-color: ${bgColor};`]} 
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            {provided.placeholder}
+            {children}
+          </div>
+        )}
+      </Droppable>
     );
   }
 }
+
+Hitbox.defaultProps = {
+  children: null,
+  bgColor: 'PowderBlue',
+};
+
+Hitbox.propTypes = {
+  children: PropTypes.node,
+  bgColor: PropTypes.string,
+};
 
 export default Hitbox;
