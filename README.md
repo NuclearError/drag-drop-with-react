@@ -35,10 +35,27 @@ The functionality seems quite limited to implementing it *exactly* how the tutor
 use-case of the repo is specifically for lists. Some bugginess experienced with regard to the indices assigned to components. Not sure
 if this is because of aberrations in my implementation or actual bugs.
 
+Packages used: 
+
+```
+"react-beautiful-dnd": "^11.0.3",
+```
+
 ### 'React Drag and Drop' npm package
 
-This was built using [this npm package](https://www.npmjs.com/package/react-drag-and-drop).
+Packages used: 
 
+```
+"react-drag-and-drop": "^3.0.0",
+```
+
+### DIY implementation
+
+Packages used:
+
+```
+"react-cursor-position": "^3.0.3",
+```
 
 ------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
