@@ -27,10 +27,10 @@ class Hitbox extends Component {
   // provided.placeholder is used to expand the space when dragging n dropping
 
   render() {
-    const { children, bgColor } = this.props;
+    const { children, bgColor, id } = this.props;
     return (
       /* Note that the droppableId needs to be unique */
-      <Droppable droppableId={1}>
+      <Droppable droppableId={id}>
         {(provided) => (
           <div
             css={[hitboxStyling, css`background-color: ${bgColor};`]} 
@@ -54,6 +54,10 @@ Hitbox.defaultProps = {
 Hitbox.propTypes = {
   children: PropTypes.node,
   bgColor: PropTypes.string,
+  id: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
 };
 
 export default Hitbox;
