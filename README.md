@@ -31,6 +31,13 @@ Packages used:
 
 [Here is a free tutorial on how to use this package](https://egghead.io/courses/beautiful-and-accessible-drag-and-drop-with-react-beautiful-dnd).
 
+The functionality seems quite limited to implementing it *exactly* how the tutorial says, ie. they really mean it when they say the 
+use-case of the repo is specifically for lists. Some bugginess experienced with regard to the indices assigned to components. Not sure
+if this is because of aberrations in my implementation or actual bugs.
+
+### 'React Drag and Drop' npm package
+
+This was built using [this npm package](https://www.npmjs.com/package/react-drag-and-drop).
 
 
 ------------------------------------------------------------------------------------------
