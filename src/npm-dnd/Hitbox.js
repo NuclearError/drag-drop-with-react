@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Droppable } from 'react-drag-and-drop';
+
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 
@@ -20,25 +23,37 @@ const hitboxStyling = css`
     }
 `;
 
-const onDragOver = (event) => {
-    event.preventDefault();
-  }
-  const onDrop = (event) => {
-    console.log("onDrop called");
-    let taskName = event.dataTransfer.getData("taskName");
-    console.log("dragged item dropped: ", taskName);
+class Hitbox extends Component {
+
+  constructor(props) {
+    super(props);
   }
 
-function Hitbox() {
-  return (
-    <div 
+  onDrop(data) {
+    console.log("onDrop called: ", data);
+  }
+  
+  render() {
+    const { id } = this.props;
+    return (
+      <Droppable
+        id={id}
+        types={['item']}
         css={hitboxStyling} 
-        onDragOver={event => onDragOver(event)}
-        onDrop={event => onDrop(event)}
-    >
-      <p>Hitbox</p>
-    </div>
-  );
+        onDrop={this.onDrop.bind(this)}
+        
+      >
+        <p>Hitbox</p>
+      </Droppable>
+    );
+  }
 }
+
+Hitbox.propTypes = {
+  id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+  ]).isRequired,
+};
 
 export default Hitbox;

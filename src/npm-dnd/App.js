@@ -25,8 +25,9 @@ function App() {
     <div className="App" css={appStyle}>
       <section css={sectionStyle}>
         <h1 css={headingStyle}>NPM 'React drag and drop' Implementation</h1>
-        <Hitbox />
+        <Hitbox id="hitbox" />
         <Item 
+          id="someItem"
           posX={200} 
           posY={50} 
         />

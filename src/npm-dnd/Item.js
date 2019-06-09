@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Draggable } from 'react-drag-and-drop';
+
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 
@@ -28,28 +30,34 @@ const onDragStart = (event, taskName) => {
     event.dataTransfer.setData("taskName", taskName);
 }
 
-const Item = ({ posX, posY }) => (
-    <div 
+const Item = ({ id, posX, posY }) => (
+    <Draggable 
+        type="item" 
+        id={id}
         css={[
             itemStyling,
             posX && css`left: ${posX}px;`,
             posY && css`top: ${posY}px;`,
         ]}
         draggable="true"
-        onDragStart = {event => onDragStart(event, 'boop')}
+        onDragStart = {event => onDragStart(event, id)}
     >
         <p>Item</p>
-    </div>
+    </Draggable>
 );
 
 Item.defaultProps = {
     posX: 0,
     posY: 0,
-  };
+};
   
-  Item.propTypes = {
-    posX: PropTypes.number,
-    posY: PropTypes.number,
-  };
+Item.propTypes = {
+id: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+]).isRequired,
+posX: PropTypes.number,
+posY: PropTypes.number,
+};
 
 export default Item;
