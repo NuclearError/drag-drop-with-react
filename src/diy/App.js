@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 
-// import ReactCursorPosition, { INTERACTIONS } from 'react-cursor-position';
-
-import Hitbox from './Hitbox';
-import Item from './Item';
-
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 
@@ -24,12 +19,7 @@ const headingStyle = css`
   font-weight: 500;
 `;
 
-const RCPstyling = css`
-  border: 1px solid red; 
-  display: inline-block;
-`;
-
-const dragDiv1Id = 'draggable-div-1'
+const dragDiv1Id = 'draggable-div-1';
 
 class App extends Component {
   constructor(props) {
@@ -70,16 +60,7 @@ class App extends Component {
         <div className="App" css={appStyle} ref={this.appElement}>
           <section css={sectionStyle}>
             <h1 css={headingStyle}>DIY Implementation</h1>
-            {/* <ReactCursorPosition
-              css={RCPstyling}
-              activationInteractionMouse={INTERACTIONS.CLICK}
-            >
-              <Item 
-                id="item-01"
-                posX={0}
-                posY={0}
-              />
-            </ReactCursorPosition> */}
+
             <div
               css={{
                 background: 'magenta',
