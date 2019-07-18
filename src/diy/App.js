@@ -11,6 +11,8 @@ const appStyle = css`
 const sectionStyle = css`
   padding: 5px;
   position: relative;
+  height: 500px;
+  background-color: MistyRose;
 `;
 
 const headingStyle = css`
@@ -28,7 +30,7 @@ class App extends Component {
     this.state = {
       dragged: null,
       draggablePositions: {
-        [dragDiv1Id]: { x: 0, y: 0 }
+        [dragDiv1Id]: { x: 50, y: 50 }
       }
     }
   }
