@@ -22,10 +22,13 @@ const itemStyling = css`
         pointer-events: none;
         color: white;
     }
+
+    &:hover {
+        background-color: red;
+    }
 `;
 
-const Item = ({ onClick, id, positions }) => {
-    return (
+const Item = ({ onClick, id, isBeingDragged, positions }) => (
     <div 
         css={[
             itemStyling,
@@ -33,12 +36,13 @@ const Item = ({ onClick, id, positions }) => {
                 top: ${positions[id].y}px;
                 left: ${positions[id].x}px;
             `,
+            // find a way to get conditional isBeingDragged styling here
         ]}
-        onClick={(event, id) => onClick(event, id)}
+        onClick={(event) => onClick(id)}
     >
         <p>Item</p>
     </div>
-)};
+);
 
 Item.defaultProps = {
     onClick: () => {},
@@ -47,30 +51,8 @@ Item.defaultProps = {
 Item.propTypes = {
     onClick: PropTypes.func,
     id: PropTypes.string.isRequired,
+    isBeingDragged: PropTypes.bool.isRequired,
     // positions: not sure, check proptype --> just an "object"
 };
 
 export default Item;
-/*
-
-// make this div into the item. Item props should be ID and an onClick function. 
-// The onCLick is optional but the ID is required
-
-<div
-css={{
-  background: 'magenta',
-  position: 'absolute',
-  top: this.state.draggablePositions[dragDiv1Id].y,
-  left: this.state.draggablePositions[dragDiv1Id].x,
-  height: 50,
-  width: 50
-}}
-onClick={() => {
-  if (!this.state.dragged) {
-    this.setState({ dragged: dragDiv1Id })
-  } else if (this.state.dragged === dragDiv1Id) {
-    this.setState({ dragged: null })
-  }
-}}
-/>
-*/

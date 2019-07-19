@@ -42,10 +42,7 @@ class Stage extends Component {
     }
   }
 
-  toggleDragged = (event, itemId) => {
-    console.log("item clicked! Two args received: ");
-    console.log("event = ", event);
-    console.log("itemId = ", itemId);
+  toggleDragged = (itemId) => {
     if (!this.state.dragged) {
       this.setState({ dragged: itemId })
     } else if (this.state.dragged === itemId) {
@@ -87,8 +84,9 @@ class Stage extends Component {
 
             <Item 
               id={dragDiv2Id} 
-              onClick={this.blah} 
+              onClick={this.toggleDragged} 
               positions={this.state.draggablePositions}
+              isBeingDragged={this.state.dragged === dragDiv2Id}
             />
 
         </div>
