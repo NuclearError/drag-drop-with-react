@@ -7,19 +7,23 @@ import { jsx, css } from '@emotion/core';
 const stageStyle = css`
   margin: 0 auto;
   width: 640px;
-  border: 3px dashed;
+  position: relative;
+  height: 500px;
+  background-color: MistyRose;
 `;
 
-const item01id = 'complexItemId12345';
+const dragDiv1Id = 'draggable-div-1';
+const dragDiv2Id = 'draggable-div-2';
 
 class Stage extends Component {
   constructor(props) {
     super(props);
-    this.stageElement = React.createRef()
+    this.stageRef = React.createRef();
     this.state = {
       dragged: null,
       draggablePositions: {
-        [item01id]: { x: 0, y: 0 }
+        [dragDiv1Id]: { x: 50, y: 50 },
+        [dragDiv2Id]: { x: 100, y: 100 },
       }
     }
   }
@@ -30,16 +34,18 @@ class Stage extends Component {
         draggablePositions: {
           ...this.state.draggablePositions,
           [this.state.dragged]: {
-            x: e.pageX - this.stageElement.current.offsetLeft - 25,
-            y: e.pageY - this.stageElement.current.offsetTop - 25
+            x: e.pageX - this.stageRef.current.offsetLeft - 25,
+            y: e.pageY - this.stageRef.current.offsetTop - 25
           }
         }
       })
     }
   }
 
-  onItemClick = itemId => {
-    // NB. make sure "this" refers to the item that was just clicked
+  toggleDragged = (event, itemId) => {
+    console.log("item clicked! Two args received: ");
+    console.log("event = ", event);
+    console.log("itemId = ", itemId);
     if (!this.state.dragged) {
       this.setState({ dragged: itemId })
     } else if (this.state.dragged === itemId) {
@@ -48,19 +54,43 @@ class Stage extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('mousemove', this.onMouseMove);
+    window.addEventListener('mousemove', this.onMouseMove)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('mousemove', this.onMouseMove);
+    window.removeEventListener('mousemove', this.onMouseMove)
   }
 
   render() {
-    const { draggablePositions } = this.state;
-    console.log("Typeof draggablePositions = ", typeof draggablePositions);
     return (
-        <div className="Stage" css={stageStyle} ref={this.stageElement}>
-          <Item positions={draggablePositions} id={item01id} onClick={this.onItemClick} />
+        <div className="Stage" css={stageStyle} ref={this.stageRef}>
+
+            {/* hardcoded div -> this is what the item component is copying */}
+            <div
+              css={{
+                background: 'magenta',
+                position: 'absolute',
+                top: this.state.draggablePositions[dragDiv1Id].y,
+                left: this.state.draggablePositions[dragDiv1Id].x,
+                height: 50,
+                width: 50
+              }}
+              onClick={() => {
+                console.log("magenta item clicked");
+                if (!this.state.dragged) {
+                  this.setState({ dragged: dragDiv1Id })
+                } else if (this.state.dragged === dragDiv1Id) {
+                  this.setState({ dragged: null })
+                }
+              }}
+            />
+
+            <Item 
+              id={dragDiv2Id} 
+              onClick={this.blah} 
+              positions={this.state.draggablePositions}
+            />
+
         </div>
     );
   }

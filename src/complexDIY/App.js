@@ -9,7 +9,6 @@ const appStyle = css`
 `;
 
 const sectionStyle = css`
-  padding: 5px;
   position: relative;
 `;
 
@@ -24,8 +23,8 @@ function App() {
     <div className="App" css={appStyle}>
       <section css={sectionStyle}>
         <h1 css={headingStyle}>'Complex' DIY Implementation</h1>
-        <Stage />
       </section>
+      <Stage />
     </div>
   );
 }

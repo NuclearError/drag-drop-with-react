@@ -5,10 +5,10 @@ import { jsx, css } from '@emotion/core';
 
 const itemStyling = css`
     position: absolute;
-    width: 75px;
-    height: 75px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    background-color: rgba(214, 121, 185, 0.4);
+    background-color: green;
     cursor: pointer;
     z-index: 1;
 
@@ -20,30 +20,25 @@ const itemStyling = css`
         top: 40%;
         left: 35%;
         pointer-events: none;
+        color: white;
     }
 `;
 
-const onDragStart = (event, taskName) => {
-    console.log("onDragStart called: taskName = ", taskName);
-    event.dataTransfer.setData("taskName", taskName);
-}
-
-const Item = ({ onClick, id, positions }) => (
+const Item = ({ onClick, id, positions }) => {
+    return (
     <div 
         css={[
             itemStyling,
             css`
-                top: ${positions}[${id}].y,
-                left: ${positions}[${id}].x,
+                top: ${positions[id].y}px;
+                left: ${positions[id].x}px;
             `,
         ]}
-        draggable="true"
-        onDragStart={event => onDragStart(event, 'boop, internal item function called')}
-        onClick={id => onClick(id)}
+        onClick={(event, id) => onClick(event, id)}
     >
         <p>Item</p>
     </div>
-);
+)};
 
 Item.defaultProps = {
     onClick: () => {},
@@ -60,7 +55,6 @@ export default Item;
 
 // make this div into the item. Item props should be ID and an onClick function. 
 // The onCLick is optional but the ID is required
-// Also needs this.state.draggable positions ???? this would be good to pass down as context rather than a prop
 
 <div
 css={{
