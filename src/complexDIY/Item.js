@@ -8,7 +8,6 @@ const itemStyling = css`
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: green;
     cursor: pointer;
     z-index: 1;
 
@@ -22,10 +21,18 @@ const itemStyling = css`
         pointer-events: none;
         color: white;
     }
+`;
+
+const defaultColors = css`
+    background-color: red;
 
     &:hover {
-        background-color: red;
+        background-color: green;
     }
+`;
+
+const draggedColors = css`
+    background-color: blue;
 `;
 
 const Item = ({ onClick, id, isBeingDragged, positions }) => (
@@ -36,7 +43,7 @@ const Item = ({ onClick, id, isBeingDragged, positions }) => (
                 top: ${positions[id].y}px;
                 left: ${positions[id].x}px;
             `,
-            // find a way to get conditional isBeingDragged styling here
+            (isBeingDragged ? draggedColors : defaultColors)
         ]}
         onClick={(event) => onClick(id)}
     >
