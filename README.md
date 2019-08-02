@@ -51,11 +51,11 @@ Packages used:
 
 ### DIY implementation
 
-Packages used:
+Collaborating with @CheshireSwift to come up with something lightweight and vanilla. (Some files are obsolete as the solution was implemented in App component.)
 
-```
-"react-cursor-position": "^3.0.3",
-```
+### ComplexDIY 
+
+This version takes the DIY implementation and adds a little bit of polish to demonstrate how hitbox collision detection might be used.
 
 ------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
